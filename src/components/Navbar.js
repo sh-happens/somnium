@@ -12,7 +12,7 @@ const Navbar = () => {
       <h3>SOMNIUM</h3>
       <ul className='nav-links'>
         <Link style={navStyle} to='/'>
-          <li>Книги</li>
+          <li>Магазин</li>
         </Link>
         <Link style={navStyle} to='/shoppingcart'>
           <li>Корзина</li>
