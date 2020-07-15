@@ -15,7 +15,6 @@ const Products = ({ shop, setShop }) => {
       return product.id === id;
     });
     setShop(shop.concat(productToAdd));
-    console.log(productToAdd);
   };
 
   return (
@@ -24,7 +23,7 @@ const Products = ({ shop, setShop }) => {
         <div className='product' key={product.id}>
           <img src={product.img} alt='alt' />
           <p>{product.title}</p>
-          <p>${product.price}</p>
+          <p>{product.price} тенге</p>
           <button
             onClick={() => {
               handleAddProduct(product.id);
