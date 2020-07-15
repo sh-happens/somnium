@@ -1,25 +1,53 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
 const ShoppingCart = ({ shop, setShop }) => {
-  const [shoppingCart, setShoppingCart] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:3001/shoppingcart").then((response) => {
-      setShoppingCart(response.data);
-    });
-    setTimeout(() => {
-      setShop(shop.concat("newstate"));
-    }, 2000);
-  }, []);
+  const handleClear = () => {
+    localStorage.clear();
+    setShop([]);
+  };
 
   return (
     <div>
-      {shoppingCart.map((product) => (
-        <div key={product.id}>{product.title}</div>
-      ))}
-      <p>{shop}</p>
+      <Total total={shop} />
+      <Clear handleDeleteItem={handleClear} />
+      <div className='products-container'>
+        {shop.map((product) => (
+          <div className='product' key={product.id}>
+            <img src={product.img} alt='alt' />
+            <p>{product.title}</p>
+            <p>{product.price} тенге</p>
+          </div>
+        ))}
+      </div>
     </div>
+  );
+};
+
+const Total = ({ total }) => {
+  return (
+    <div>
+      <p>
+        <b>
+          Итого:{" "}
+          {total.reduce((sum, book) => {
+            return sum + book.price;
+          }, 0)}
+          {""} тенге
+        </b>
+      </p>
+    </div>
+  );
+};
+
+const Clear = ({ handleDeleteItem }) => {
+  return (
+    <button
+      onClick={() => {
+        handleDeleteItem();
+      }}
+    >
+      Очистить корзину
+    </button>
   );
 };
 
