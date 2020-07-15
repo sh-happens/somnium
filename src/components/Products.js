@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const Products = () => {
+const Products = ({ shop, setShop }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -10,6 +10,14 @@ const Products = () => {
     });
   }, []);
 
+  const handleAddProduct = (id) => {
+    let productToAdd = products.find((product) => {
+      return product.id === id;
+    });
+    setShop(shop.concat(productToAdd));
+    console.log(productToAdd);
+  };
+
   return (
     <div className='products-container'>
       {products.map((product) => (
@@ -17,7 +25,13 @@ const Products = () => {
           <img src={product.img} alt='alt' />
           <p>{product.title}</p>
           <p>${product.price}</p>
-          <button>add to cart</button>
+          <button
+            onClick={() => {
+              handleAddProduct(product.id);
+            }}
+          >
+            Добавить в корзину
+          </button>
         </div>
       ))}
     </div>

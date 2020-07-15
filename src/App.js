@@ -7,14 +7,20 @@ import Products from "./components/Products";
 import ShoppingCart from "./components/ShoppingCart";
 
 const App = () => {
-  const [shop, setShop] = useState("State");
+  const [shop, setShop] = useState([]);
 
   return (
     <Router>
       <div className='App'>
         <Navbar />
         <Switch>
-          <Route path='/' exact component={Products} />
+          <Route
+            path='/'
+            exact
+            render={(routeProps) => (
+              <Products shop={shop} setShop={setShop} {...routeProps} />
+            )}
+          />
           <Route
             path='/shoppingcart'
             exact

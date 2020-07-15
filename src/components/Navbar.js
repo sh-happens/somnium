@@ -12,10 +12,10 @@ const Navbar = () => {
       <h3>SOMNIUM</h3>
       <ul className='nav-links'>
         <Link style={navStyle} to='/'>
-          <li>Products</li>
+          <li>Книги</li>
         </Link>
         <Link style={navStyle} to='/shoppingcart'>
-          <li>Shopping cart</li>
+          <li>Корзина</li>
         </Link>
       </ul>
     </nav>
